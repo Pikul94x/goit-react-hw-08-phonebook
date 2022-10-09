@@ -1,0 +1,14 @@
+.section {
+    display: block;
+    min-width: 420px;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgb(245, 220, 187);
+    border-radius: 5px;
+}
+
+.title {
+    text-align: center;
+}

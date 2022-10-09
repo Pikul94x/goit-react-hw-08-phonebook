@@ -1,0 +1,40 @@
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;    
+    margin-right: 20px;
+}
+
+.text {
+    font-size: 16px;
+    margin: 0;    
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #e4e4e4;
+    color: black;
+    width: 100px;
+    height: 32px;
+    margin-left: 10px;
+    padding: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    font-size: 16px;    
+    transition: all ease-in-out 300ms;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #b2b2b2;
+    color: white;
+}
