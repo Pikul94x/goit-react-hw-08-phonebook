@@ -19,7 +19,19 @@ const register = createAsyncThunk('auth/register', async userData => {
     token.set(data.token);
     return data;
   } catch (error) {
-    return Notiflix.Notify.failure(error.message);
+    if (
+      error.response?.status === 400 &&
+      error.response?.data?.code === 11000 &&
+      error.response?.data?.keyPattern.email
+    ) {
+      Notiflix.Notify.failure(
+        'This email is already in use, try using different email or login into an existing account.'
+      );
+    } else {
+      Notiflix.Notify.failure(error.response?.data?.message || error.message);
+    }
+
+    throw error;
   }
 });
 
@@ -29,7 +41,12 @@ const logIn = createAsyncThunk('auth/login', async userData => {
     token.set(data.token);
     return data;
   } catch (error) {
-    return Notiflix.Notify.failure(error.message);
+    if (error.response?.status === 400) {
+      Notiflix.Notify.failure('Invalid credentials, try again.');
+    } else {
+      Notiflix.Notify.failure(error.message);
+    }
+    throw error;
   }
 });
 

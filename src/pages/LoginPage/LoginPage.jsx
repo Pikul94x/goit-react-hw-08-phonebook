@@ -10,10 +10,14 @@ export default function LoginPage() {
     const { name, value } = event.currentTarget;
     setForm(prevForm => ({ ...prevForm, [name]: value }));
   };
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    dispatch(authOperations.logIn({ ...form }));
-    setForm({ email: '', password: '' });
+    const response = await dispatch(authOperations.logIn({ ...form }));
+    if (response.type === authOperations.logIn.fulfilled.toString()) {
+      setForm({ email: '', password: '' });
+    } else {
+      setForm({ email: form.email, password: '' });
+    }
   };
   const { email, password } = form;
 

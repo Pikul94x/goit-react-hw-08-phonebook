@@ -10,7 +10,7 @@ const ContactList = () => {
   const { data: contacts, isFetching, isError } = useGetContactsQuery();
   const filteredContacts =
     contacts &&
-    contacts.filter(contact => contact.name.toLowerCase().includes(filter));
+    contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
   const isContactsEmpty = filteredContacts && filteredContacts.length > 0;
 
   return (

@@ -10,10 +10,13 @@ export default function RegistrationPage() {
     const { name, value } = event.currentTarget;
     setForm(prevForm => ({ ...prevForm, [name]: value }));
   };
-  const handleSubmit = event => {
+
+  const handleSubmit = async event => {
     event.preventDefault();
-    dispatch(authOperations.register({ ...form }));
-    setForm({ name: '', email: '', password: '' });
+    const response = await dispatch(authOperations.register({ ...form }));
+    if (response.type === authOperations.register.fulfilled.toString()) {
+      setForm({ name: '', email: '', password: '' });
+    }
   };
   const { name, email, password } = form;
 
@@ -55,6 +58,7 @@ export default function RegistrationPage() {
             className={styles.input}
             type="password"
             name="password"
+            minLength="7"
             required
             value={password}
             onChange={handleChange}
